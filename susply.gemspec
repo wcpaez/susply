@@ -9,14 +9,17 @@ Gem::Specification.new do |s|
   s.version     = Susply::VERSION
   s.authors     = ["Wenceslao Paez Chavez"]
   s.email       = ["wcpaez@gmail.com"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of Susply."
-  s.description = "TODO: Description of Susply."
+  s.homepage    = "Susply"
+  s.summary     = "Subscription managment for non credit card payment"
+  s.description = "Robust engine for subscription managment"
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
+  s.test_files = Dir["spec/**/*"]
 
   s.add_dependency "rails", "~> 4.2.1"
 
   s.add_development_dependency "sqlite3"
+  s.add_development_dependency "rspec-rails"
+  s.add_development_dependency "factory_girl_rails"
 end
