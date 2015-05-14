@@ -1,10 +1,8 @@
 module Susply
   class ChangeSubscription
     def self.call(owner, new_plan)
-      active_subscription = owner.active_subscription
-
-      if active_subscription
-        Susply::CancelSubscription.call(active_subscription)
+      if owner.has_active_subscription?
+        Susply::CancelSubscription.call(owner.active_subscription)
       end
 
       new_subscription = Susply::CreateSubscription.call(owner, new_plan)

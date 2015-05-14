@@ -1,6 +1,6 @@
 module Susply
   class Subscription < ActiveRecord::Base
-    belongs_to :owner, class_name: Susply.owner_class
+    belongs_to :owner, class_name: Susply.subscription_owner_class
     belongs_to :plan, class_name: 'Susply::Plan' 
 
     validates_presence_of :owner_id, :plan_id, :start,

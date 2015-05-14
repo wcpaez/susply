@@ -15,7 +15,7 @@ module Susply
 
       it "sets to owner the class on susply initializer" do
         a = Susply::Subscription.reflect_on_association(:owner)
-        expect(a.options[:class_name]).to eq Susply.owner_class
+        expect(a.options[:class_name]).to eq Susply.subscription_owner_class
       end
 
       it "belogs to plan" do
