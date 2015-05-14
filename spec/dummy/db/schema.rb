@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150513161513) do
+ActiveRecord::Schema.define(version: 20150513183555) do
+
+  create_table "organizations", force: :cascade do |t|
+    t.string   "name"
+    t.string   "subdomain"
+    t.integer  "owner_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "susply_plans", force: :cascade do |t|
     t.string   "sku"
@@ -25,5 +33,19 @@ ActiveRecord::Schema.define(version: 20150513161513) do
     t.boolean  "active"
     t.boolean  "published"
   end
+
+  create_table "susply_subscriptions", force: :cascade do |t|
+    t.integer  "owner_id"
+    t.integer  "plan_id"
+    t.datetime "start"
+    t.datetime "current_period_start"
+    t.datetime "current_period_end"
+    t.integer  "quantity"
+    t.datetime "deactivated_at"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "susply_subscriptions", ["owner_id"], name: "index_susply_subscriptions_on_owner_id"
 
 end
