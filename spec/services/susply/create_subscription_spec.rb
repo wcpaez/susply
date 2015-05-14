@@ -3,7 +3,6 @@ require 'spec_helper'
 module Susply
   describe CreateSubscription do
     it "creates the subscription" do
-      
       owner = Organization.create(name: "Iokero", subdomain: 'iokero')
       plan = create(:susply_plan, interval: 'monthly')
 

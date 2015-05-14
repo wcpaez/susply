@@ -15,5 +15,9 @@ module Susply
     def price
       plan.price
     end
+
+    def active?
+      deactivated_at.nil?
+    end
   end
 end

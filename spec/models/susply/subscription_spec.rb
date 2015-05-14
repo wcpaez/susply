@@ -83,5 +83,20 @@ module Susply
         expect(subscription.price).to eq price
       end
     end
+
+    describe "#active?" do
+      it "returns true when deactivated at is not present" do
+        subscription = build(:susply_subscription, deactivated_at: nil)
+
+        expect(subscription.active?).to eq true
+      end
+      
+      it "returns false when deactivated at is present" do
+        subscription = build(:susply_subscription, 
+                             deactivated_at: Time.zone.now)
+
+        expect(subscription.active?).to eq false
+      end
+    end
   end
 end

@@ -13,10 +13,9 @@ module Susply
           end_period_calculation(s.current_period_start, plan.interval)
       end
       
-      subscription.save
+      subscription.save!
 
       subscription
     end
   end
 end
-
