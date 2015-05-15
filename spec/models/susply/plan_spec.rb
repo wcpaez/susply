@@ -34,8 +34,13 @@ module Susply
         expect(plan).not_to be_valid
       end
       
-      it "should validates price is greater than 0" do
+      it "should validates price is equal to 0" do
         plan = build(:susply_plan, price: 0)
+        expect(plan).to be_valid
+      end
+
+      it "should validates price is less than 0" do
+        plan = build(:susply_plan, price: -1)
         expect(plan).not_to be_valid
       end
 
