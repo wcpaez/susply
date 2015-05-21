@@ -18,12 +18,12 @@ module Susply
         expect(a.options[:class_name]).to eq Susply.subscription_owner_class
       end
 
-      it "belogs to plan" do
+      it "belongs to plan" do
         a = Susply::Subscription.reflect_on_association(:plan)
         expect(a.macro).to eq :belongs_to
       end
 
-      it "sets to owner the class on susply initializer" do
+      it "sets the plan class on susply" do
         a = Susply::Subscription.reflect_on_association(:plan)
         expect(a.options[:class_name]).to eq 'Susply::Plan'
       end

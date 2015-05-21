@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150513183555) do
+ActiveRecord::Schema.define(version: 20150521222634) do
 
   create_table "organizations", force: :cascade do |t|
     t.string   "name"
@@ -20,6 +20,21 @@ ActiveRecord::Schema.define(version: 20150513183555) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "susply_payments", force: :cascade do |t|
+    t.integer  "owner_id"
+    t.integer  "plan_id"
+    t.integer  "subscription_id"
+    t.integer  "amount"
+    t.datetime "period_start"
+    t.datetime "period_end"
+    t.string   "status"
+    t.string   "invoice"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "susply_payments", ["owner_id"], name: "index_susply_payments_on_owner_id"
 
   create_table "susply_plans", force: :cascade do |t|
     t.string   "sku"
