@@ -8,10 +8,11 @@ module Susply
       plan = create(:susply_plan)
       subscription = create(:susply_subscription, :active, owner: owner)
 
-      Susply::ChangeSubscription.call(owner, plan)
+      new_subscription = Susply::ChangeSubscription.call(owner, plan)
       subscription.reload
 
       expect(subscription).not_to be_active
+      expect(new_subscription).to be_active
     end
 
     it "creates a new subscription" do
