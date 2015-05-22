@@ -9,5 +9,8 @@ module Susply
 
     validates :amount, numericality: { only_integer: true,
                                        greater_than_or_equal_to: 0 }
+
+    validates_inclusion_of :type,
+      in: %w(plan_renovation plan_change plan_close)
   end
 end

@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20150521222634) do
     t.datetime "period_end"
     t.string   "status"
     t.string   "invoice"
+    t.string   "type"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end

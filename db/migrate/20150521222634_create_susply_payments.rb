@@ -9,6 +9,7 @@ class CreateSusplyPayments < ActiveRecord::Migration
       t.datetime :period_end
       t.string :status
       t.string :invoice
+      t.string :type
 
       t.timestamps null: false
     end
