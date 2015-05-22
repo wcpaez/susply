@@ -9,7 +9,7 @@ FactoryGirl.define do
     end
 
     owner_id 1
-    plan_id 1
+    association :plan, factory: :susply_plan
     start "2015-05-13 13:01:24"
     current_period_start "2015-05-13 13:01:24"
     current_period_end "2015-05-13 13:01:24"

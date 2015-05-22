@@ -5,6 +5,8 @@ module Susply
       base.class_eval do
         has_many :subscriptions, class_name: 'Susply::Subscription',
           foreign_key: 'owner_id'  
+        has_many :payments, class_name: 'Susply::Payment',
+          foreign_key: 'owner_id'  
       end
     end
 

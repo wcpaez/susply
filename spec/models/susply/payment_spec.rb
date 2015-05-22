@@ -87,17 +87,40 @@ module Susply
       expect(payment).to be_valid
     end
 
-    it "should validates inclusion of type" do
+    it "should validates inclusion of generated_type" do
       payments = [
-        build(:susply_payment, type: 'plan_renovation'),
-        build(:susply_payment, type: 'plan_change'),
-        build(:susply_payment, type: 'plan_close'),
+        build(:susply_payment, generated_type: 'plan_renovation'),
+        build(:susply_payment, generated_type: 'plan_change'),
+        build(:susply_payment, generated_type: 'plan_close'),
       ]
 
       not_payments = [
-        build(:susply_payment, type: 'invalid'),
-        build(:susply_payment, type: 'not-valid'),
-        build(:susply_payment, type: 'sopo'),
+        build(:susply_payment, generated_type: 'invalid'),
+        build(:susply_payment, generated_type: 'not-valid'),
+        build(:susply_payment, generated_type: 'sopo'),
+      ]
+
+      payments.each do |payment|
+        expect(payment).to be_valid
+      end
+
+      not_payments.each do |payment|
+        expect(payment).not_to be_valid
+      end
+    end
+
+    it "should validates inclusion of status" do
+      payments = [
+        build(:susply_payment, status: 'generated'),
+        build(:susply_payment, status: 'paid'),
+        build(:susply_payment, status: 'exonerated'),
+        build(:susply_payment, status: 'refunded')
+      ]
+
+      not_payments = [
+        build(:susply_payment, status: 'geneted'),
+        build(:susply_payment, status: 'pad'),
+        build(:susply_payment, status: 'exated')
       ]
 
       payments.each do |payment|

@@ -6,8 +6,8 @@ FactoryGirl.define do
     amount 1
     period_start "2015-05-21 17:26:35"
     period_end "2015-05-21 17:26:35"
-    status "pending"
+    status "generated"
     invoice "MyString"
-    type "plan_renovation"
+    generated_type "plan_renovation"
   end
 end

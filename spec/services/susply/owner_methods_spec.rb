@@ -5,7 +5,7 @@ module Susply
   describe OwnerMethods do
     let(:owner_class) { Susply.subscription_owner_class.constantize } 
 
-    describe "sets the has many relationship" do
+    describe "sets the has many relationship for subscriptions" do
       it "has many subscriptions" do
         a = owner_class.reflect_on_association(:subscriptions)
         expect(a.macro).to eq :has_many
@@ -21,6 +21,24 @@ module Susply
         expect(a.options[:foreign_key]).to eq 'owner_id'
       end
     end
+
+    describe "sets the has many relationship for payments" do
+      it "has many payments" do
+        a = owner_class.reflect_on_association(:payments)
+        expect(a.macro).to eq :has_many
+      end
+
+      it "sets payments class" do
+        a = owner_class.reflect_on_association(:payments)
+        expect(a.options[:class_name]).to eq 'Susply::Payment'
+      end
+
+      it "sets payments foreign key" do
+        a = owner_class.reflect_on_association(:payments)
+        expect(a.options[:foreign_key]).to eq 'owner_id'
+      end
+    end
+
 
     describe "#active_subscription" do
       it "returns nil when the is no subscrition" do
