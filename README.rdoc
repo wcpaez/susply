@@ -1,3 +1,7 @@
 = Susply
 
 This project rocks and uses MIT-LICENSE.
+{<img src="https://codeclimate.com/github/wcpaez/susply/badges/gpa.svg" />}[https://codeclimate.com/github/wcpaez/susply]
+{<img src="https://codeclimate.com/github/wcpaez/susply/badges/coverage.svg" />}[https://codeclimate.com/github/wcpaez/susply/coverage]
+{<img src="https://codeclimate.com/github/wcpaez/susply/badges/gpa.svg" />}[https://codeclimate.com/github/wcpaez/susply]
+
