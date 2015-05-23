@@ -34,12 +34,20 @@ module Susply
         expect(payment.subscription).to be s
       end
 
-      it "sets the payment amount proratated" do
+      it "sets the payment amount proratated for no renovation type" do
         allow(Susply::Prorate).to receive(:call) {5}
         s = create(:susply_subscription, :active, owner: owner)
         payment = Susply::CreatePayment.call(s, 'plan_change')
 
         expect(payment.amount).to be 5
+      end
+
+      it "sets the payment mount as full plan price for renovation type" do
+        plan = create(:susply_plan, price: 25)
+        s = create(:susply_subscription, :active, owner: owner, plan: plan)
+        payment = Susply::CreatePayment.call(s, 'plan_renovation')
+
+        expect(payment.amount).to be 25
       end
 
       it "sets the payment type to the passed generated type" do
