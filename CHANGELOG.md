@@ -17,3 +17,4 @@
   * Susply::OwnerMethods
 
 * Engine setup
+* Rails generator

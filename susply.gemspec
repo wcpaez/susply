@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = Susply::VERSION
   s.authors     = ["Wenceslao Paez Chavez"]
   s.email       = ["wcpaez@gmail.com"]
-  s.homepage    = "Susply"
+  s.homepage    = "https://github.com/wcpaez/susply"
   s.summary     = "Subscription managment for non credit card payment"
   s.description = "Robust engine for subscription managment"
   s.license     = "MIT"
