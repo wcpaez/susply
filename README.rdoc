@@ -1,6 +1,7 @@
 = Susply
 
 {<img alt="Status?branch=master" src="https://codeship.com/projects/9749e880-e313-0132-4e7b-0e8782f5ebb8/status?branch=master" />}[https://codeship.com/projects/81636]
+{<img src="https://badge.fury.io/rb/susply.svg" alt="Gem Version" />}[http://badge.fury.io/rb/susply]
 {<img src="https://codeclimate.com/github/wcpaez/susply/badges/gpa.svg" />}[https://codeclimate.com/github/wcpaez/susply]
 {<img src="https://codeclimate.com/github/wcpaez/susply/badges/coverage.svg" />}[https://codeclimate.com/github/wcpaez/susply/coverage]
 
