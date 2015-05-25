@@ -19,5 +19,13 @@ module Susply
     def active?
       deactivated_at.nil?
     end
+
+    def expired?
+      current_period_end < Time.zone.now
+    end
+
+    def allowed_to_renew?
+      active? && expired?
+    end
   end
 end

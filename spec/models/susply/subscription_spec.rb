@@ -2,6 +2,7 @@ require 'spec_helper'
 
 module Susply
   describe Subscription, type: :model do
+    let(:time) { Time.zone.now }
     describe "validations" do
       it "shoulda validate" do
         subscription = build(:susply_subscription)
@@ -96,6 +97,44 @@ module Susply
                              deactivated_at: Time.zone.now)
 
         expect(subscription.active?).to eq false
+      end
+    end
+
+    describe "#expired?" do
+      it "returns true when current_period_end is less than now" do
+        subscription = build(:susply_subscription,
+                             current_period_end: time - 1.day)
+
+        expect(subscription).to be_expired
+      end
+
+      it "returns false when current_period_end is greater than now" do
+        subscription = build(:susply_subscription,
+                             current_period_end: time + 1.day)
+
+        expect(subscription).not_to be_expired
+      end
+    end
+
+    describe "allowed_to_renew?" do
+      it "returns false when is not active" do
+        subscription = build(:susply_subscription, :inactive)
+
+        expect(subscription).not_to be_allowed_to_renew
+      end
+
+      it "returns false when is active and not expired" do
+        subscription = build(:susply_subscription, :active,
+                             current_period_end: time + 1.day)
+
+        expect(subscription).not_to be_allowed_to_renew
+      end
+
+      it "returns true when is active and expired" do
+        subscription = build(:susply_subscription, :active,
+                             current_period_end: time - 1.day)
+
+        expect(subscription).to be_allowed_to_renew
       end
     end
   end
