@@ -5,16 +5,25 @@ module Susply
     let(:owner_class) { Susply.subscription_owner_class.constantize } 
     let(:time) {Time.zone.today}
 
-    context "when owner does not has an active subscription" do
-      it "returns nil" do
-        owner = owner_class.create()
-        plan = create(:susply_plan)
-        subscription = create(:susply_subscription, :inactive, owner: owner)
+    it "returns nil when owner does not has an active subscription" do
+      owner = owner_class.create()
+      plan = create(:susply_plan)
+      subscription = create(:susply_subscription, :inactive, owner: owner)
 
-        s = Susply::RenewsSubscription.call(owner)
+      s = Susply::RenewsSubscription.call(owner)
 
-        expect(s).to be_nil
-      end
+      expect(s).to be_nil
+    end
+
+    it "returns nil when active subscription is not expired" do
+      owner = owner_class.create()
+      plan = create(:susply_plan)
+      subscription = create(:susply_subscription, :active,
+                            owner: owner, current_period_end: time + 2.days)
+
+      s = Susply::RenewsSubscription.call(owner)
+
+      expect(s).to be_nil
     end
 
     context "when owner has an active subscription" do
@@ -43,9 +52,9 @@ module Susply
       it "return a subscription with updated attributes" do
         owner = owner_class.create()
         subscription = create(:susply_subscription, :active, owner: owner, 
-                             current_period_start: time - 5.days)
+                              current_period_start: time - 5.days)
         s = Susply::RenewsSubscription.call(owner)
-        
+
         expect(s.quantity).not_to eq subscription.quantity
         expect(s.current_period_start).
           not_to eq subscription.current_period_start
@@ -56,8 +65,8 @@ module Susply
       it "returns updates by one the subscriptions" do
         owner = owner_class.create()
         subscription = create(:susply_subscription, :active, owner: owner, 
-                             current_period_start: time - 5.days,
-                             quantity: 5)
+                              current_period_start: time - 5.days,
+                              quantity: 5)
         s = Susply::RenewsSubscription.call(owner)
 
         expect(s.quantity).to eq 6
@@ -67,8 +76,8 @@ module Susply
         owner = owner_class.create()
         end_time = time + 6.hours
         subscription = create(:susply_subscription, :active, owner: owner, 
-                             current_period_start: time - 5.days,
-                             current_period_end: end_time)
+                              current_period_start: time - 5.days,
+                              current_period_end: end_time)
         s = Susply::RenewsSubscription.call(owner)
 
         expect(s.current_period_start).to eq end_time
@@ -79,7 +88,7 @@ module Susply
         end_time = time + 6.hours
         plan = create(:susply_plan, interval: 'monthly')
         subscription = create(:susply_subscription, :active, owner: owner, 
-                             plan: plan, current_period_end: end_time)
+                              plan: plan, current_period_end: end_time)
         s = Susply::RenewsSubscription.call(owner)
         expect(s.current_period_end).to eq(end_time + 1.month)
       end
@@ -89,7 +98,7 @@ module Susply
         end_time = time + 2.hours
         plan = create(:susply_plan, interval: 'yearly')
         subscription = create(:susply_subscription, :active, owner: owner, 
-                             plan: plan, current_period_end: end_time)
+                              plan: plan, current_period_end: end_time)
         s = Susply::RenewsSubscription.call(owner)
         expect(s.current_period_end).to eq(end_time + 1.year)
       end

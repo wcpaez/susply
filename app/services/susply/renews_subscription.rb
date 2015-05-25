@@ -1,10 +1,10 @@
 module Susply
   class RenewsSubscription
     def self.call(owner)
-      if owner.has_active_subscription?
-        subscription = owner.active_subscription
-        Susply::CreatePayment.call(subscription, "plan_renovation")
-        calculate_renewed_subscription(subscription)
+      active_subscription = owner.active_subscription
+      if active_subscription && active_subscription.expired?
+        Susply::CreatePayment.call(active_subscription, "plan_renovation")
+        calculate_renewed_subscription(active_subscription)
       else
         nil
       end
