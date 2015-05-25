@@ -3,4 +3,6 @@ en:
     messages:
       failed_renovation: 'Failed renovation'
       success_renovation: 'Success renovation'
+      failed_changed_plan: 'Failed change plan'
+      success_changed_plan: 'Success change plan'
 

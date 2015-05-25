@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    susply (0.0.1)
+    susply (0.0.2)
       decorators (~> 2.0.1)
       rails (~> 4.2.1)
 

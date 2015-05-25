@@ -9,6 +9,10 @@ module Susply
       @subscription_owner_model.capitalize
     end
 
+    def billable_entity
+      @subscription_owner_model.downcase
+    end
+
     def install
       template "config/initializers/susply.rb"
 

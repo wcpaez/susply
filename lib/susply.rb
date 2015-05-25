@@ -3,6 +3,7 @@ require "decorators"
 
 module Susply
   mattr_accessor :subscription_owner_class
+  mattr_accessor :billable_entity
 
   def self.setup(&block)
     yield self

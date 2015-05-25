@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'byebug'
 
 module Susply
   describe RenovationsController, type: :controller do
