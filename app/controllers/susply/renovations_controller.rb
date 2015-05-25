@@ -6,9 +6,13 @@ module Susply
 
     def create
       subscription = Susply::RenewsSubscription.call(@owner)
-
-      render json: {}
-
+      if subscription
+        redirect_to after_renovation_success_path,
+          notice: t('susply.messages.success_renovation')
+      else
+        redirect_to after_renovation_fail_path,
+          alert: t('susply.messages.failed_renovation')
+      end
     end
 
     private
@@ -18,6 +22,16 @@ module Susply
           find(params[:owner_id])
         @owner = searched_owner
       end
+    end
+
+    def after_renovation_fail_path
+      return super(@owner) if defined?(super)
+      susply.owner_path(@owner)
+    end
+
+    def after_renovation_success_path
+      return super(@owner) if defined?(super)
+      susply.owner_path(@owner)
     end
   end
 end

@@ -1,0 +1,6 @@
+en:
+  susply:
+    messages:
+      failed_renovation: 'Failed renovation'
+      success_renovation: 'Success renovation'
+
