@@ -7,7 +7,7 @@ module Susply
       if current_owner.can_change_plan?(plan)
         Susply::ChangeSubscription.call(current_owner, plan)
         redirect_to after_change_plan_success_path,
-          alert: t('susply.messages.success_changed_plan')
+          notice: t('susply.messages.success_changed_plan')
       else
         redirect_to after_change_plan_fail_path,
           alert: t('susply.messages.failed_changed_plan')

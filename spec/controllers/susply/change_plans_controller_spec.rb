@@ -83,10 +83,10 @@ module Susply
           expect(response).to redirect_to path
         end
 
-        it "sets the flash alert message" do
+        it "sets the flash notice message" do
           post :create, plan_id: @plan.id
 
-          expect(flash[:alert]).
+          expect(flash[:notice]).
             to eq I18n.t('susply.messages.success_changed_plan')
         end
       end
