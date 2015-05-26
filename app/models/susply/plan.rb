@@ -10,7 +10,7 @@ module Susply
     validates :active, inclusion: { in: [true, false] }
     validates :published, inclusion: { in: [true, false] }
 
-    scope :actives, -> { where(active: true)}
+    scope :active, -> { where(active: true)}
     scope :published, -> { where(published: true)}
   end
 end

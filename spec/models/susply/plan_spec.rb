@@ -85,12 +85,12 @@ module Susply
       end
     end
 
-    describe ".actives" do
+    describe ".active" do
       it "returns only plans where status is true" do
         list = create_list(:susply_plan, 2, active: true)
         not_in_list = create(:susply_plan, active: false)
 
-        expect(Susply::Plan.actives).to match_array list
+        expect(Susply::Plan.active).to match_array list
       end
     end
 
