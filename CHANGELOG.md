@@ -1,3 +1,8 @@
+### 1.0.0 - 2015-05-27
+Production ready gem
+
+* Fix bug with succes falsh message type
+
 ### 0.0.2 - 2015-05-24
 
 * Controllers
