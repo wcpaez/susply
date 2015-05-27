@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    susply (0.0.3)
+    susply (1.0.0)
       decorators (~> 2.0.1)
       rails (~> 4.2.1)
 
@@ -68,7 +68,7 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
-    mime-types (2.5)
+    mime-types (2.6.1)
     mini_portile (0.6.2)
     minitest (5.6.1)
     nokogiri (1.6.6.2)
